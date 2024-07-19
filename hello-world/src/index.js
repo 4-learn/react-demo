@@ -4,13 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const getValue=(event)=>{
-  console.log(event.target.value)
+const Apps=(props)=>{
+  return(
+    <button>大家好，我叫  {props.name} </button>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<div>
-              <button value={true} onClick={getValue}>按下以取得數值 </button>
+              <Apps name="Tom" />
             </div>);
 
 // If you want to start measuring performance in your app, pass a function
