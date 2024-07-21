@@ -15,6 +15,14 @@ class UserProfile extends Component {
   // 元件被安裝時（Mount）執行的函數
   componentDidMount() {
     // 模擬 API 請求
+    this.fetchData();
+    
+    // 設置計時器，每秒更新一次
+    this.timerID = setInterval(() => this.tick(), 1000);
+  }
+
+  // 模擬 API 請求的函數
+  fetchData() {
     fetch('https://httpbin.org/get')
       .then(response => response.json())
       .then(data => {
@@ -50,6 +58,18 @@ class UserProfile extends Component {
       console.log(`User name updated to: ${this.state.userData.name}`);
       // 你可以在這裡執行其他操作，比如發送更新通知
     }
+  }
+
+  // 每秒更新的函數
+  tick() {
+    console.log('Ticking...');
+  }
+
+  // 元件被移除時（Unmount）執行的函數
+  componentWillUnmount() {
+    // 清除計時器
+    clearInterval(this.timerID);
+    console.log('Component will unmount, timer cleared.');
   }
 
   render() {
