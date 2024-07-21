@@ -7,7 +7,8 @@ class UserProfile extends Component {
     this.state = {
       userData: null,
       loading: true,
-      error: null
+      error: null,
+      newName: '' // 新增一個 state 來儲存新名稱
     };
   }
 
@@ -26,8 +27,33 @@ class UserProfile extends Component {
       });
   }
 
+  // 處理名稱輸入變更
+  handleNameChange = (e) => {
+    this.setState({ newName: e.target.value });
+  }
+
+  // 更新名稱的方法
+  updateName = () => {
+    this.setState(prevState => ({
+      userData: {
+        ...prevState.userData,
+        name: prevState.newName
+      },
+      newName: ''
+    }));
+  }
+
+  // 元件被更新時（Update）執行的函數
+  componentDidUpdate(prevProps, prevState) {
+    // 檢查名稱是否有更新
+    if (prevState.userData && prevState.userData.name !== this.state.userData.name) {
+      console.log(`User name updated to: ${this.state.userData.name}`);
+      // 你可以在這裡執行其他操作，比如發送更新通知
+    }
+  }
+
   render() {
-    const { userData, loading, error } = this.state;
+    const { userData, loading, error, newName } = this.state;
 
     // 處理載入中和錯誤的情況
     if (loading) {
@@ -45,6 +71,15 @@ class UserProfile extends Component {
         <p>Origin: {userData.origin}</p>
         <p>Name: {userData.name}</p>
         <p>Email: {userData.email}</p>
+        <div>
+          <input
+            type="text"
+            value={newName}
+            onChange={this.handleNameChange}
+            placeholder="Enter new name"
+          />
+          <button onClick={this.updateName}>Update Name</button>
+        </div>
       </div>
     );
   }
