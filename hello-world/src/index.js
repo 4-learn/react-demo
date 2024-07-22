@@ -1,38 +1,19 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom/client';
-import UserProfile from './umount';  // 引入你的 UserProfile 組件
+import { useState } from "react";
+import ReactDOM from "react-dom/client";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showUserProfile: true
-    };
-  }
+function FavoriteColor() {
+  const [color, setColor] = useState("red");
 
-  // 切換 UserProfile 組件顯示狀態
-  toggleUserProfile = () => {
-    this.setState(prevState => ({
-      showUserProfile: !prevState.showUserProfile
-    }));
-  }
-
-  render() {
-    return (
-      <div>
-        <button onClick={this.toggleUserProfile}>
-          {this.state.showUserProfile ? 'Hide' : 'Show'} User Profile
-        </button>
-        {this.state.showUserProfile && <UserProfile />}
-      </div>
-    );
-  }
+  return (
+    <>
+      <h1>My favorite color is {color}!</h1>
+      <button
+        type="button"
+        onClick={() => setColor("blue")}
+      >Blue</button>
+    </>
+  )
 }
 
-// 將 App 組件渲染到根元素中
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+root.render(<FavoriteColor />);
