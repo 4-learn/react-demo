@@ -1,19 +1,23 @@
-import { useState } from "react";
-import ReactDOM from "react-dom/client";
+import { useState, useEffect } from 'react';
+import { render } from 'react-dom';
 
-function FavoriteColor() {
-  const [color, setColor] = useState("red");
+function Example() {
+  const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    console.log('clicked');
+    document.title = `You clicked ${count} times`;
+  });
   return (
-    <>
-      <h1>My favorite color is {color}!</h1>
-      <button
-        type="button"
-        onClick={() => setColor("blue")}
-      >Blue</button>
-    </>
-  )
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<FavoriteColor />);
+render(
+  <Example />, document.getElementById('root')
+);
