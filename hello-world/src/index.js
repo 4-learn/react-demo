@@ -1,23 +1,52 @@
-import { useState, useEffect } from 'react';
-import { render } from 'react-dom';
+import ReactDOM from "react-dom/client";
+import { useState } from "react";
 
-function Example() {
-  const [count, setCount] = useState(0);
+function Component1() {
+  const [user, setUser] = useState("Jesse Hall");
 
-  useEffect(() => {
-    console.log('clicked');
-    document.title = `You clicked ${count} times`;
-  });
   return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
+    <>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 user={user} />
+    </>
   );
 }
 
-render(
-  <Example />, document.getElementById('root')
-);
+function Component2({ user }) {
+  return (
+    <>
+      <h1>Component 2</h1>
+      <Component3 user={user} />
+    </>
+  );
+}
+
+function Component3({ user }) {
+  return (
+    <>
+      <h1>Component 3</h1>
+      <Component4 user={user} />
+    </>
+  );
+}
+
+function Component4({ user }) {
+  return (
+    <>
+      <h1>Component 4</h1>
+      <Component5 user={user} />
+    </>
+  );
+}
+
+function Component5({ user }) {
+  return (
+    <>
+      <h1>Component 5</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Component1 />);
