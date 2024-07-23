@@ -6,7 +6,13 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://httpbin.org/get')
+    fetch('https://httpbin.org/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ key: 'value' }), // 您可以在這裡放置需要發送的資料
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -33,7 +39,7 @@ function App() {
 
   return (
     <div>
-      <h1>Response from httpbin.org/get</h1>
+      <h1>Response from httpbin.org/post</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
