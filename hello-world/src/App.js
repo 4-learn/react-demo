@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function Item({ name, isPacked }) {
+  if (isPacked) {
+    return null;
+  }
+  return <li className="item">{name}</li>;
 }
 
-export default App;
+export default function PackingList() {
+  return (
+    <section>
+      <h1>John 的出門清單</h1>
+      <ul>
+        <Item 
+          isPacked={true} 
+          name="手機" 
+        />
+        <Item 
+          isPacked={true} 
+          name="錢包" 
+        />
+        <Item 
+          isPacked={false} 
+          name="鑰匙" 
+        />
+      </ul>
+    </section>
+  );
+}
