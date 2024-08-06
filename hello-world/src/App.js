@@ -1,48 +1,13 @@
-import React, { createContext, useState } from 'react';
+import React from 'react';
 
-// 創建一個 Context
-const ThemeContext = createContext();
-
-function App() {
-  const [theme, setTheme] = useState('light');
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  return (
-    // 使用 Provider 包裹應用，並提供主題資料
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <Toolbar />
-    </ThemeContext.Provider>
-  );
-}
-
-function Toolbar() {
+// 定義一個簡單的函式組件
+function Greeting() {
   return (
     <div>
-      <ThemedButton />
+      <h1>Hello, World!</h1>
+      <p>Welcome to my React app.</p>
     </div>
   );
 }
 
-function ThemedButton() {
-  // 使用 Consumer 來使用 Context 資料
-  return (
-    <ThemeContext.Consumer>
-      {({ theme, toggleTheme }) => (
-        <button
-          onClick={toggleTheme}
-          style={{
-            backgroundColor: theme === 'light' ? '#fff' : '#333',
-            color: theme === 'light' ? '#000' : '#fff',
-          }}
-        >
-          Toggle Theme
-        </button>
-      )}
-    </ThemeContext.Consumer>
-  );
-}
-
-export default App;
+export default Greeting;
