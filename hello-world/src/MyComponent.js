@@ -16,13 +16,13 @@ function MyComponent() {
       <div>
         <label>
           Name:
-          <input type="text" {...nameInput} />
+          <input type="text" value={nameInput.value} onChange={nameInput.onChange} />
         </label>
       </div>
       <div>
         <label>
           Email:
-          <input type="email" {...emailInput} />
+          <input type="email" value={emailInput.value} onChange={emailInput.onChange} />
         </label>
       </div>
       <button type="submit">Submit</button>
